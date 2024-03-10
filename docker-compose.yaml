@@ -1,0 +1,36 @@
+version: '3.0'
+networks:
+  base-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.10.0/24"  # 需根据实际网络环境规划
+
+services:
+  mysql:
+    restart: always
+    image: mysql:5.7.43 # 8.0.0 8.1.0
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      base-network:
+        ipv4_address: 172.16.10.11
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 3310:3306
+    volumes:
+      - ${mysql_data_dir}:/var/lib/mysql
+
+  marketemo:
+    restart: always
+    image: swr.cn-north-4.myhuaweicloud.com/wenxl/marketemo-mvc:v1
+    networks:
+      base-network:
+        ipv4_address: 172.16.10.13
+    # volumes:
+    #   - ${marketemo_config_file}:/root/app/application.yaml
+    depends_on:
+      - mysql
+    ports:
+      - "80:8089"

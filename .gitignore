@@ -1,0 +1,37 @@
+log/*.log
+.idea
+
+go.sum
+
+/bin/*
+
+#################### vue前端 start
+view/dist
+view/marketemo-vue/node_modules
+view/marketemo-vue/dist
+view/marketemo-vue/dist-ssr
+
+view/marketemo-vue/logs
+view/marketemo-vue/*.log
+view/marketemo-vue/npm-debug.log*
+view/marketemo-vue/yarn-debug.log*
+view/marketemo-vue/yarn-error.log*
+view/marketemo-vue/pnpm-debug.log*
+view/marketemo-vue/lerna-debug.log*
+view/marketemo-vue/package-lock.json
+
+
+view/marketemo-vue/*.local
+
+# Editor directories and files
+view/marketemo-vue/.vscode
+view/marketemo-vue/!.vscode/extensions.json
+view/marketemo-vue/.idea
+view/marketemo-vue/.DS_Store
+view/marketemo-vue/*.suo
+view/marketemo-vue/*.ntvs*
+view/marketemo-vue/*.njsproj
+view/marketemo-vue/*.sln
+view/marketemo-vue/*.sw?
+#################### vue前端 end
+

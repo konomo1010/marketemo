@@ -1,0 +1,21 @@
+MySQL:
+  host: mysql
+  port: 3306
+  user: root
+  passwd: 123456
+  database: market_emotion
+
+Log:
+  File: ./log/access_%Y%m%d%H%M.log
+
+Iris:
+  LogLevel: debug
+  DisableStartupLog: false
+  Charset: "utf-8"
+  TimeFormat: "2006-01-02 15:04:05"
+  PostMaxMemory: 67108864
+  IgnoreServerErrors:
+    - "http: Server closed"
+  Other:
+    ServerName: "My awesome Iris web server"
+    addr: 0.0.0.0:8089
