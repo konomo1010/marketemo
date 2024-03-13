@@ -49,7 +49,7 @@
 
 //####################### echart ebd
 
-//####################### 日期 start
+//####################### 按日期过滤 start
 
   let xvalue = ref('')
 
@@ -85,43 +85,48 @@
   }
 
 
-//####################### 日期 end
+//####################### 按日期过滤 end
 
-//####################### 提交 start
+//####################### 添加新数据 start
   // 表单
-  const form = reactive({
-    date: '',  // 日期
-    lbs: 0, // 连板数
-    bd: '', // 标的
-    sjzt: 0, // 实际涨停
-    sjdt: 0,  // 实际跌停
-  })
+const form = reactive({
+  date: '',  // 日期
+  lbs: 0, // 连板数
+  bd: '', // 标的
+  sjzt: 0, // 实际涨停
+  sjdt: 0,  // 实际跌停
+})
 // 提示框显示标识
 const dialogVisible = ref(false)
 
 function formCommit() {
+
   if(form.date == '' || form.date == undefined){
     ElMessage({
             showClose: true,
             message: '请选日期',
             type: 'warning',
     })
-    return
-  }
-  form.lbs = parseInt(form.lbs)
-  form.sjzt = parseInt(form.sjzt)
-  form.sjdt = parseInt(form.sjdt)
+  }else {
+    form.lbs = parseInt(form.lbs)
+    form.sjzt = parseInt(form.sjzt)
+    form.sjdt = parseInt(form.sjdt)
 
-  axios.post(paddMarketEmoData, JSON.stringify(form))
-  .then((response)=>{
+    axios.post(paddMarketEmoData, JSON.stringify(form))
+    .then((response)=>{
       if(response.data) {
-        // 需调用 marketEmoEchart 组件的setChartOption()  组件间方法调用
         setChartOption()
         dialogVisible.value = false
       }
     })
   }
-//####################### 提交 end
+  form.date = ''
+  form.lbs = 0
+  form.bd = ''
+  form.sjzt = 0
+  form.sjdt = 0
+}
+//####################### 添加新数据 end
 
 </script>
 
