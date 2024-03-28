@@ -31,15 +31,15 @@ let echartStore=defineStore({
                 color: [blue, red, green],
                 title: {text: "MarketEmo"},
                 tooltip: {trigger: "axis",axisPointer: {type: 'cross'},formatter: (params)=> { 
-                    return date[params[0].dataIndex] + " | " + params[0].value + "板" + "<br>" + bd[params[0].dataIndex]}},
+                    return date[params[0].dataIndex] + " | " + params[0].value + "板" + "<br>" + bd[params[0].dataIndex] + "absssc"}},
                 grid: {left: '3%',right: '4%',bottom: '3%',containLabel: true},
                 // 添加 dataZoom 组件，实现鼠标缩放功能
                 dataZoom: [
                       {type: 'inside',start: 0,end: 100},
-                      {show: true,type: 'slider',start: 0,end: 100,handleSize: 8},
+                    //   {show: true,type: 'slider',start: 0,end: 100,handleSize: 8},
                 ],
                 xAxis: {type: 'category',data: []},
-                yAxis: [{dataMin: 1,type: 'value',name:"连板数"},{dataMin: 1,type: 'value',name:"实际涨跌停"}],
+                yAxis: [{dataMin: 1,type: 'value',name:"连板数"},{dataMin: 1,type: 'value',name:"实际涨跌停",max: 1500, min: 0, interval: 300}],
                 series: [
                   {
                     name: '连扳数',data: [],type: 'line',smooth: false,

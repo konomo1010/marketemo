@@ -1,6 +1,6 @@
 <script setup>
   import * as echarts from 'echarts';
-  import {ref, onMounted, reactive, watch, inject} from 'vue';
+  import {ref, onMounted, reactive, inject} from 'vue';
   // 导入中文
   import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
@@ -41,11 +41,15 @@
   onMounted(() => {
     myChart = echarts.init(main.value)
     setChartOption()
+
+    myChart.on('circle', (event)=>{
+      console.log('==>', event.start, event.end)
+  }) 
   })
 
-  watch(echartstore.get_option, () => {
-    myChart.setOption(echartstore.get_option)
-  })
+  // watch(echartstore.get_option, () => {
+  //   myChart.setOption(echartstore.get_option)
+  // })
 
 //####################### echart ebd
 
@@ -53,12 +57,13 @@
 
   let xvalue = ref('')
 
-  watch(xvalue,()=>{
-      echartstore.startDate = xvalue.value[0]
-      echartstore.endDate = xvalue.value[1]
-  })
+  // watch(xvalue,()=>{
+  //     echartstore.startDate = xvalue.value[0]
+  //     echartstore.endDate = xvalue.value[1]
+  // })
   
   async function selectByDate() {
+    
     let postData = {
         "startDate": xvalue.value[0],
         "endDate": xvalue.value[1]
@@ -77,6 +82,7 @@
     return await axios.post(pMarketEmoDataByDateRange,postData)
     .then((response)=>{
         echartstore.set_option(response.data)
+        myChart.setOption(echartstore.get_option)
     })
   }
 

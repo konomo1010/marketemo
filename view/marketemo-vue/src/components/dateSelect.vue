@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref, watch, inject } from 'vue'
-import chartOptionData from '../store/store'
+// import chartOptionData from '../store/store.js.bak'
 import echartStore from '../store/echart_store'
 import { ElMessage } from 'element-plus'
 // 导入中文
@@ -13,7 +13,8 @@ const pMarketEmoDataByDateRange = '/api/v1/pMarketEmoDataByDateRange'
 const paddMarketEmoData = '/api/v1/addMarketEmoData'
 
 // 获取仓库数据
-let chart_option_data = chartOptionData()
+// let chart_option_data = chartOptionData()
+
 let echartstore = echartStore()
 
 let xvalue = ref('')
